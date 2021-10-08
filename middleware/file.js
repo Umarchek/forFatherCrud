@@ -8,12 +8,19 @@ const storage = multer.diskStorage({
         cb(null, 'public/images')
     },
     filename: (req, file, cb) => {
-        const date = moment().format("DDMMYYYY-HHmmss")
+        const date = moment().format("DDMMYYYY-HHmmss-sss")
         cb(null, `${date}-${file.filename}`)
     }
 })
 const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
 
 const fileFilter = (req, file, cb) => {
-    if (allowedTypes.includes(file))
+    if (allowedTypes.includes(file)) {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
 }
+module.exports = multer({
+    storage, fileFilter
+})
