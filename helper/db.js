@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const URI = 'mongodb+srv://Mirzaabdullayev:y29GnNM1Fh8H7zyY@cluster0.oler2.mongodb.net/car'
+const URI = 'mongodb+srv://Umarjon007:4D3jawAVR2r5KOBr@cluster0.7ksdl.mongodb.net/Tractors'
 
 module.exports = () => {
     try {
