@@ -3,15 +3,15 @@ const {
     model
 } = require('mongoose')
 
-const categorySchema = new Schema({
+const CategorySchema = new Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
-    img: {
+    icon: {
         type: String,
         required: true
     }
 })
 
-module.exports = model('category', categorySchema)
+module.exports = model('category', CategorySchema)
