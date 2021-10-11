@@ -36,4 +36,13 @@ router.post('/categories/add', fileMiddleware.single('img'), async (req, res) =>
 })
 
 
+router.get('/category/edit/:id', async (req, res) => {
+    const category = await Category.findById(req.params.id)
+    res.render('admin/editCategory', {
+        title: 'Edit category',
+        category,
+        layout: 'admin'
+    })
+})
+
 module.exports = router
