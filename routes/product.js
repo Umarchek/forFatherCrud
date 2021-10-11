@@ -26,7 +26,7 @@ router.post('/products/add', fileMiddleware.single('img'), async (req, res) => {
     } = req.body
     req.file ? img = req.file.filename : img = ''
 
-    const product = new Products({
+    const product = new Product({
         name,
         more,
         img
