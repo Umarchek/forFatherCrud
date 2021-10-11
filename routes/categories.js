@@ -22,13 +22,13 @@ router.get('/categories/add', (req, res) => {
 
 router.post('/categories/add', fileMiddleware.single('img'), async (req, res) => {
     const {
-        name
+        name, description
     } = req.body
     req.file ? img = req.file.filename : img = ''
 
     const category = new Category({
         name,
-        discription,
+        description,
         img
     })
     await category.save()

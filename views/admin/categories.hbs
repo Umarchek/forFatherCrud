@@ -1,17 +1,32 @@
 <h1>Hello categories</h1>
 {{#if categories.length}}
-  <div class="row">
-    {{#each categories}}
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/images/{{img}}" class="card-img-top" alt="{{name}}" />
-          <div class="card-body">
-            <h5 class="card-title">{{name}}</h5>
-          </div>
+<div class="row row-cols-1 row-cols-md-3">
+  {{#each categories}}
+  {{!-- <div class="col-sm-3">
+    <div class="card">
+      <img src="/images/{{img}}" class="card-img-top" alt="{{name}}" />
+      <div class="card-body">
+        <h5 class="card-title">{{name}}</h5>
+        <br>
+        <p class="card-text">{{description}}</p>
+      </div>
+    </div>
+  </div> --}}
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img src="/images/{{img}}" class="card-img-top" alt="{{name}}">
+      <div class="card-body">
+        <h5 class="card-title">{{name}}</h5>
+        <p class="card-text">{{description}}</p>
+        <div class="d-flex justify-content-between">
+          <a href="#" class="btn btn-primary"><i class="far fa-edit"></i>Edit</a>
+          <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i>Delete</a>
         </div>
       </div>
-    {{/each}}
+    </div>
   </div>
+  {{/each}}
+</div>
 {{else}}
-  <h2>Categories is empty</h2>
+<h2>Categories is empty</h2>
 {{/if}}
