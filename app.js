@@ -16,8 +16,7 @@ const adminRouter = require("./routes/admin");
 const productsRouter = require("./routes/products");
 const authRouter = require("./routes/auth");
 
-const uri =
-  "mongodb+srv://Mirzaabdullayev:y29GnNM1Fh8H7zyY@cluster0.oler2.mongodb.net/car";
+const uri = 'mongodb+srv://Umarjon007:4D3jawAVR2r5KOBr@cluster0.7ksdl.mongodb.net/Tractors'
 
 // MongoDB connection
 require("./helper/db")();
