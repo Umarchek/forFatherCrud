@@ -6,7 +6,7 @@ const Product = require('../models/Product')
 const fileMiddleware = require('../middleware/file')
 
 router.get('/products', async (req, res) => {
-    const products = await Product.find()
+    const product = await Product.find()
     res.render('admin/products', {
         layout: 'admin',
         products
@@ -26,12 +26,12 @@ router.post('/products/add', fileMiddleware.single('img'), async (req, res) => {
     } = req.body
     req.file ? img = req.file.filename : img = ''
 
-    const products = new products({
+    const product = new products({
         name,
         more,
         img
     })
-    await products.save()
+    await product.save()
     res.redirect('/admin/products')
 })
 

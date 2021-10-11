@@ -1,10 +1,10 @@
 <h1>Hello product</h1>
-{{#if products.length}}
+{{#if product.length}}
 <div class="row row-cols-1 row-cols-md-3">
-    {{#each products}}
+    {{#each product}}
     <div class="col mb-4">
         <div class="card h-100">
-            <img src="/images/{{icon}}" class="card-img-top" alt="{{name}}">
+            <img src="/images/{{img}}" class="card-img-top" alt="{{name}}">
             <div class="card-body">
                 <h5 class="card-title">{{name}}</h5>
                 <p class="card-text">{{more}}</p>
