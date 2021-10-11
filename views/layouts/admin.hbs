@@ -1,17 +1,17 @@
+<!DOCTYPE html>
 <html lang="en">
 {{> head}}
-  <body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-      {{> navbar}}
-      {{> aside}}
-      <div class="content-wrapper">
-        {{> contentHeader}}
-      {{{body}}}
-
-      </div>
-      {{> footer}}
+    {{> preloader}}
+    {{> navbar}}
+    {{> aside}}
+    <div class="content-wrapper">
+    {{> contentHeader}}
+    {{{body}}}
     </div>
-
-    {{> script}}
-  </body>
+    {{> footer}}
+    {{> scripts}}
+    </div>
+</body>
 </html>

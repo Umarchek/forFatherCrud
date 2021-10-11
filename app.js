@@ -1,77 +1,50 @@
-const createError = require("http-errors");
-const express = require("express");
-const hbs = require("express-handlebars");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
-const session = require("express-session");
-const MongoDBStore = require("connect-mongodb-session")(session);
+const createError = require('http-errors');
+const express = require('express');
+const exhbs = require('express-handlebars')
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+
+// Routes
+const indexRouter = require('./routes/index');
+const adminRouter = require('./routes/admin')
+const categoriesRouter = require('./routes/categories')
+const marksRouter = require('./routes/marks')
 const app = express();
-const auth = require("./middleware/auth");
 
-// Admin routes
-const adminRouter = require("./routes/admin");
-const productsRouter = require("./routes/products");
-const authRouter = require("./routes/auth");
-
-const uri = 'mongodb+srv://Umarjon007:4D3jawAVR2r5KOBr@cluster0.7ksdl.mongodb.net/Tractors'
-
-// MongoDB connection
-require("./helper/db")();
+app.use('/admin', express.static(path.join(__dirname, 'public')));
+app.use('/admin:any', express.static(path.join(__dirname, 'public')));
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.engine('hbs', exhbs({
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  defaultLayout: 'main',
+  extname: 'hbs',
+  partialsDir: [
+    path.join(__dirname, 'views/partials'),
+  ],
+  runtimeOptions: {
+    allowProtoMethodsByDefault: true,
+    allowProtoPropertiesByDefault: true,
+  }
+}))
 
-/* Admin folders is reading */
-app.use("/admin", express.static(path.join(__dirname, "public")));
-app.use("/admin:any", express.static(path.join(__dirname, "public")));
+// MongoDb Connection
+require('./helper/db')()
 
-var store = new MongoDBStore({
-  uri,
-  collection: "mySessions",
-});
-
-app.engine(
-  "hbs",
-  hbs({
-    layoutsDir: path.join(__dirname, "views/layouts"),
-    defaultLayout: "main",
-    extname: "hbs",
-    partialsDir: [path.join(__dirname, "views/partials")],
-    runtimeOptions: {
-      allowProtoMethodsByDefault: true,
-      allowProtoPropertiesByDefault: true,
-    },
-  })
-);
-
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
-
-app.use(
-  session({
-    secret: "yashirin kalit",
-    resave: false,
-    saveUninitialized: false,
-    store,
-  })
-);
-
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/admin", auth, adminRouter);
-app.use("/admin", auth, productsRouter);
-app.use("/auth", authRouter);
+app.use('/', indexRouter);
+app.use('/admin', adminRouter);
+app.use('/admin', categoriesRouter);
+app.use('/admin', marksRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -82,11 +55,11 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.render('error');
 });
 
 module.exports = app;

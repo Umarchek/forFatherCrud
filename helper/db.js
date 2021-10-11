@@ -1,20 +1,21 @@
 const mongoose = require('mongoose')
-const uri = 'mongodb+srv://Umarjon007:4D3jawAVR2r5KOBr@cluster0.7ksdl.mongodb.net/Tractors'
+const URI = 'mongodb+srv://Umarjon007:4D3jawAVR2r5KOBr@cluster0.7ksdl.mongodb.net/Tractors'
 
-module.exports = async () => {
+module.exports = () => {
     try {
-        await mongoose.connect(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+        mongoose.connect(URI, {
             useCreateIndex: true,
-            useFindAndModify: false
+            useNewUrlParser: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true
         })
         const db = mongoose.connection
-        db.on('error', console.error.bind(console, 'connection error'))
+        db.on('error', console.error.bind(console, 'connection error:'));
         db.once('open', function () {
-            console.log('MongoDB connected global');
-        })
+            console.log('MongoDB connected with global');
+        });
+
     } catch (err) {
-        throw err
+        throw err;
     }
 }

@@ -3,15 +3,19 @@ const {
     model
 } = require('mongoose')
 
-const CategorySchema = new Schema({
+const categorySchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
-    icon: {
+    discription: {
+        type: String,
+        required: true,
+    },
+    img: {
         type: String,
         required: true
     }
 })
 
-module.exports = model('category', CategorySchema)
+module.exports = model('category', categorySchema)
