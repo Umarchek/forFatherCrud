@@ -1,0 +1,22 @@
+<h1>Hello product</h1>
+{{#if products.length}}
+<div class="row row-cols-1 row-cols-md-3">
+    {{#each products}}
+    <div class="col mb-4">
+        <div class="card h-100">
+            <img src="/images/{{icon}}" class="card-img-top" alt="{{name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{name}}</h5>
+                <p class="card-text">{{more}}</p>
+                <div class="d-flex justify-content-between">
+                    <a href="#" class="btn btn-primary"><i class="far fa-edit"></i>Edit</a>
+                    <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i>Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<h2>Products is empty</h2>
+{{/if}}
