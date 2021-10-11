@@ -16,7 +16,7 @@ router.get('/products', async (req, res) => {
 router.get('/products/add', (req, res) => {
     res.render('admin/addProducts', {
         layout: 'admin',
-        title: 'Create category'
+        title: 'Create product'
     })
 })
 
