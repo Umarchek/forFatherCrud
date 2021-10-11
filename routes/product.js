@@ -4,8 +4,8 @@ const {
 const router = Router()
 
 
-router.get('/marks', (req, res) => {
-    res.render('admin/marks', {
+router.get('/product', (req, res) => {
+    res.render('admin/product', {
         layout: 'admin',
         title: 'Car models',
     })
