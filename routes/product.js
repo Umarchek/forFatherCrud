@@ -9,7 +9,7 @@ router.get('/products', async (req, res) => {
     const product = await Product.find()
     res.render('admin/products', {
         layout: 'admin',
-        products
+        product
     })
 })
 
@@ -26,7 +26,7 @@ router.post('/products/add', fileMiddleware.single('img'), async (req, res) => {
     } = req.body
     req.file ? img = req.file.filename : img = ''
 
-    const product = new products({
+    const product = new Products({
         name,
         more,
         img
