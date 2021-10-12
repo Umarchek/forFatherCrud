@@ -26,10 +26,10 @@ router.post('/categories/add', fileMiddleware.single('icon'), async (req, res) =
     const {
         name
     } = await req.body
-
     req.file ? icon = req.file.filename : icon = ''
     const category = new Category({
         name,
+        description,
         icon
     })
 

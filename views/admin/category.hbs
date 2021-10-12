@@ -1,7 +1,7 @@
 {{#if products.length}}
-<div class="row">
+<div class="row row-cols-1 row-cols-md-3 g-4">
     {{#each products}}
-    <div class="col-3">
+    {{!-- <div class="col-3">
         <div class="card">
             <img src="/images/{{img}}" class="card-img-top" alt="{{name}}" />
             <div class="card-body d-flex justify-content-between">
@@ -11,6 +11,16 @@
             <div class="d-flex justify-content-between">
                 <a href="/admin/products/edit/{{id}}">O'zgartirish</a>
                 <a href="/admin/products/delete/{{id}}">O'chirish</a>
+            </div>
+        </div>
+    </div> --}}
+    <div class="col">
+        <div class="card">
+            <img src="/images/{{img}}" class="card-img-top" alt="{{name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{name}}</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
             </div>
         </div>
     </div>
