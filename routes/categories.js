@@ -4,6 +4,7 @@ const {
 const router = Router()
 const Category = require('../models/Category')
 const fileMiddleware = require('../middleware/file')
+const toDelete = require('../middleware/toDelete')
 
 router.get('/categories', async (req, res) => {
     const categories = await Category.find()
@@ -46,8 +47,9 @@ router.get('/categories/edit/:id', async (req, res) => {
 })
 
 router.post('/categories/edit/:id', fileMiddleware.single('img'), async (req, res) => {
+    const { img } = await Category.findById(req.params.id)
+    toDelete(img)
     const admin = req.body
-    console.log(admin);
     admin.img = req.file.filename
     await Category.findByIdAndUpdate(req.params.id, admin, (err) => {
         if (err) {
