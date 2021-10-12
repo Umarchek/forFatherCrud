@@ -52,8 +52,4 @@ router.get('/category/edit/:id', async (req, res) => {
         category
     })
 })
-router.post('/category/edit/:id', async (req, res) => {
-    const admin = req.body
-    console.log(admin);
-})
 module.exports = router
