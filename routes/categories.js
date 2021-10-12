@@ -36,7 +36,7 @@ router.post('/categories/add', fileMiddleware.single('img'), async (req, res) =>
 })
 
 
-router.get('/category/edit/:id', async (req, res) => {
+router.get('/categories/edit/:id', async (req, res) => {
     const category = await Category.findById(req.params.id)
     res.render('admin/editCategory', {
         title: 'Edit category',
@@ -45,22 +45,9 @@ router.get('/category/edit/:id', async (req, res) => {
     })
 })
 
-router.get('/category/edit/:id', async (req, res) => {
-    const category = await Category.findById(req.params.id)
-    res.render('admin/editCategory', {
-        title: 'Edit Category',
-        category
-    })
-})
-router.post('/category/edit/:id', fileMiddleware.single('img'), async (req, res) => {
+router.post('/categories/edit/:id', fileMiddleware.single('img'), async (req, res) => {
     const admin = req.body
-    admin.img = req.file.filename
-    await Category.findByIdAndUpdate(req.params.id, admin, (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.redirect('admin/categories')
-        }
-    })
+    req.body.img = req.file.filename
+    await Category.findByIdAndUpdate(req.params.id, req.body, (err) => { })
 })
 module.exports = router
