@@ -45,4 +45,12 @@ router.get('/category/edit/:id', async (req, res) => {
     })
 })
 
+router.get('/category/edit/:id', async (req, res) => {
+    const category = await Category.findById(req.params.id)
+    console.log(category);
+    res.render('admin/editCategory', {
+        title: 'Edit Category',
+        category
+    })
+})
 module.exports = router
