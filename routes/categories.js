@@ -47,6 +47,7 @@ router.get('/categories/edit/:id', async (req, res) => {
 
 router.post('/categories/edit/:id', fileMiddleware.single('img'), async (req, res) => {
     const admin = req.body
+    console.log(admin);
     admin.img = req.file.filename
     await Category.findByIdAndUpdate(req.params.id, admin, (err) => {
         if (err) {
