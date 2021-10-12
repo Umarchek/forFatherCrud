@@ -1,37 +1,40 @@
 const createError = require('http-errors');
 const express = require('express');
-const exhbs = require('express-handlebars')
+const hbs = require('express-handlebars')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-// Routes
 const indexRouter = require('./routes/index');
-const adminRouter = require('./routes/admin')
-const categoriesRouter = require('./routes/categories')
-const productRouter = require('./routes/product')
+const usersRouter = require('./routes/users');
 const app = express();
 
-app.use('/admin', express.static(path.join(__dirname, 'public')));
-app.use('/admin:any', express.static(path.join(__dirname, 'public')));
+// Admin routes
+const adminRouter = require('./routes/admin')
+const categoriesRouter = require('./routes/categories')
+const productsRouter = require('./routes/products')
+
+// MongoDB connection
+require('./helper/db')()
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.engine('hbs', exhbs({
+
+/* Admin folders is reading */
+app.use('/admin', express.static(path.join(__dirname, 'public')))
+app.use('/admin:any', express.static(path.join(__dirname, 'public')))
+
+app.engine('hbs', hbs({
   layoutsDir: path.join(__dirname, 'views/layouts'),
   defaultLayout: 'main',
   extname: 'hbs',
   partialsDir: [
-    path.join(__dirname, 'views/partials'),
+    path.join(__dirname, 'views/partials')
   ],
   runtimeOptions: {
     allowProtoMethodsByDefault: true,
-    allowProtoPropertiesByDefault: true,
+    allowProtoPropertiesByDefault: true
   }
 }))
-
-// MongoDb Connection
-require('./helper/db')()
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -42,9 +45,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/admin', categoriesRouter);
-app.use('/admin', productRouter);
+app.use('/admin', productsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

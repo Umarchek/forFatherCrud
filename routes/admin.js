@@ -3,10 +3,9 @@ const {
 } = require('express')
 const router = Router()
 
-
 router.get('/', (req, res) => {
     res.render('admin/index', {
-        title: 'Admin',
+        title: 'Admin panel',
         layout: 'admin'
     })
 })

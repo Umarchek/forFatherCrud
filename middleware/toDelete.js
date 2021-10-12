@@ -1,15 +1,14 @@
 const fs = require('fs')
 const path = require('path')
+const p = path.dirname(require.main.filename)
 
-const toDelete = async (filePath) => {
+module.exports = (filePath) => {
+    console.log(filePath);
     if (filePath) {
-        await fs.unlink(path.join(__dirname) + '/public/images/' + filePath, (err) => {
+        fs.unlink(p + '/../public/images/' + filePath, (err) => {
             if (err) {
                 console.log(err);
             }
         })
     }
-}
-module.exports = {  
-    toDelete
 }
