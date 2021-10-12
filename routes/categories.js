@@ -53,7 +53,7 @@ router.post('/categories/edit/:id', fileMiddleware.single('img'), async (req, re
         if (err) {
             console.log(err);
         } else {
-            res.redirect('admin/categories')
+            res.redirect('/admin/categories')
         }
     })
 })
