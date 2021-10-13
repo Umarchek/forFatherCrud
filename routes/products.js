@@ -3,10 +3,12 @@ const Category = require("../models/Category");
 const Product = require("../models/Product");
 const router = Router();
 const fileMiddleware = require("../middleware/fileMiddleware");
-router.get("/products", (req, res) => {
+router.get("/products", async (req, res) => {
+  const products = await Product.find();
   res.render("admin/products", {
     layout: "admin",
     title: "Maxsulotlar sahifasi",
+    products,
   });
 });
 
