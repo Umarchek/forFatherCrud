@@ -30,7 +30,7 @@ router.post('/categories/add', fileMiddleware.single('icon'), async (req, res) =
     const category = new Category({
         name,
         description,
-        icon
+        icon    
     })
 
     await category.save()
