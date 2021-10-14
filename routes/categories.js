@@ -16,7 +16,7 @@ router.get("/categories/:id", async (req, res) => {
   const products = await Category.aggregate([
     {
       $match: {
-        $id: mongoose.Types.ObjectId,
+        $id: mongoose.Types.ObjectId(req.params.id),
 
       }
     },
@@ -26,6 +26,23 @@ router.get("/categories/:id", async (req, res) => {
         localField: '_id',
         foreignField: 'categoryId',
         as: 'products'
+      }
+    },
+    {
+      $group: {
+        _id: {
+          _id: '$_id'
+        },
+        products: {
+          $push: '$products'
+        }
+      }
+    },
+    {
+      $project: {
+        _id: '$_id._id',
+        name: '$_id.name',
+        price: '$_id.name'
       }
     }
   ])
