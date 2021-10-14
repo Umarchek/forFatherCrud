@@ -3,7 +3,7 @@ const router = Router();
 const fileMiddleware = require("../middleware/fileMiddleware");
 const Category = require("../models/Category");
 const toDelete = require("../middleware/toDelete");
-
+const mongoose = require('mongoose')
 router.get("/categories", async (req, res) => {
   const categories = await Category.find();
   res.render("admin/categories", {
@@ -14,6 +14,12 @@ router.get("/categories", async (req, res) => {
 });
 router.get("/categories/:id", async (req, res) => {
   const products = await Category.aggregate([
+    {
+      $match: {
+        $id: mongoose.Types.ObjectId,
+
+      }
+    },
     {
       $lookup: {
         from: 'products',
