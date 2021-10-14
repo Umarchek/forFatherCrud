@@ -14,13 +14,21 @@ router.get("/categories", async (req, res) => {
 });
 router.get("/categories/:id", async (req, res) => {
   const products = await Category.aggregate([
-      
+    {
+      $lookup: {
+        from: 'products',
+        localField: '_id',
+        foreignField: 'categoryId',
+        as: 'products'
+      }
+    }
   ])
-  res.render("admin/categories", {
-    title: "Admin categories",
-    layout: "admin",
-    categories,
-  });
+  res.send(products)
+  // res.render("admin/categories", {
+  //   title: "Admin categories",
+  //   layout: "admin",
+  //   categories,
+  // });
 });
 
 router.get("/categories/add", (req, res) => {
