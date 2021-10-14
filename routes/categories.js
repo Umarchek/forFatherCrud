@@ -42,7 +42,9 @@ router.get("/categories/:id", async (req, res) => {
       $project: {
         _id: '$_id._id',
         name: '$_id.name',
-        price: '$_id.price'
+        img: '$_id.img',
+        price: '$_id.price',
+        products: '$products',
       }
     }
   ])
