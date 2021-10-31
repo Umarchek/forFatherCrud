@@ -4,6 +4,16 @@ const fileMiddleware = require("../middleware/fileMiddleware");
 const Category = require("../models/Category");
 const toDelete = require("../middleware/toDelete");
 const mongoose = require('mongoose')
+
+
+
+router.get("/categories/add", (req, res) => {
+  res.render("admin/addProduct", {
+    title: "Admin add categories",
+    layout: "admin",
+  }); 
+});
+
 router.get("/categories", async (req, res) => {
   const categories = await Category.find();
   res.render("admin/categories", {
@@ -48,7 +58,6 @@ router.get("/categories/:id", async (req, res) => {
       }
     }
   ])
-  res.send(products)
   res.render("admin/categories", {
     title: "Admin categories",
     layout: "admin",
@@ -56,12 +65,7 @@ router.get("/categories/:id", async (req, res) => {
   });
 });
 
-router.get("/categories/add", (req, res) => {
-  res.render("admin/addCategories", {
-    title: "Admin add categories",
-    layout: "admin",
-  });
-});
+
 
 router.post(
   "/categories/add",
