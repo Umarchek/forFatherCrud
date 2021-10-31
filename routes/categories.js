@@ -49,11 +49,11 @@ router.get("/categories/:id", async (req, res) => {
     }
   ])
   res.send(products)
-  // res.render("admin/categories", {
-  //   title: "Admin categories",
-  //   layout: "admin",
-  //   categories,
-  // });
+  res.render("admin/categories", {
+    title: "Admin categories",
+    layout: "admin",
+    categories,
+  });
 });
 
 router.get("/categories/add", (req, res) => {
