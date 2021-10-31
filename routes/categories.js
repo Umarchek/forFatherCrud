@@ -61,7 +61,7 @@ router.get("/categories/:id", async (req, res) => {
   res.render("admin/categories", {
     title: "Admin categories",
     layout: "admin",
-    categories,
+    products,
   });
 });
 
