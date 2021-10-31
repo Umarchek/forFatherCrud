@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 
 
 router.get("/categories/add", (req, res) => {
-  res.render("admin/addProduct", {
+  res.render("admin/addCategories", {
     title: "Admin add categories",
     layout: "admin",
   }); 
