@@ -1,11 +1,12 @@
 const fs = require('fs')
 const path = require('path')
-const p = path.dirname(require.main.filename)
 
-module.exports = (filePath) => {
-    console.log(filePath);
-    if (filePath) {
-        fs.unlink(p + '/../public/images/' + filePath, (err) => {
+const filePath = path.join(require.main.filename)
+// console.log(filePath);
+
+module.exports = async (fileName) => {
+    if (fileName) {
+        await fs.unlink(filePath + '/../../public/images/' + fileName, (err) => {
             if (err) {
                 console.log(err);
             }

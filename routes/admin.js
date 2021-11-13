@@ -1,13 +1,12 @@
-const {
-    Router
-} = require('express')
-const router = Router()
+var express = require('express');
+var router = express.Router();
+const auth = require('../middleware/auth')
 
-router.get('/', (req, res) => {
-    res.render('admin/index', {
-        title: 'Admin panel',
-        layout: 'admin'
-    })
-})
+/* GET users listing. */
+router.get('/', auth, function (req, res, next) {
+  res.render('admin/index', {
+    layout: 'main',
+  })
+});
 
-module.exports = router
+module.exports = router;

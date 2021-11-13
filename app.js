@@ -1,31 +1,29 @@
 const createError = require('http-errors');
 const express = require('express');
-const hbs = require('express-handlebars')
+const exhbs = require('express-handlebars')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const session = require('express-session');
+const MongoStore = require('connect-mongodb-session')(session)
+
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const adminRouter = require('./routes/admin');
+const categoryRouter = require('./routes/category');
+const productRouter = require('./routes/product');
+const authRouter = require('./routes/auth');
+
+const variables = require('./middleware/virables')
+
 const app = express();
 
-// Admin routes
-const adminRouter = require('./routes/admin')
-const categoriesRouter = require('./routes/categories')
-const productsRouter = require('./routes/products')
-
-// MongoDB connection
-require('./helper/db')()
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-/* Admin folders is reading */
-app.use('/admin', express.static(path.join(__dirname, 'public')))
-app.use('/admin:any', express.static(path.join(__dirname, 'public')))
-
-app.engine('hbs', hbs({
+app.engine('hbs', exhbs({
   layoutsDir: path.join(__dirname, 'views/layouts'),
-  defaultLayout: 'main',
+  defaultLayout: 'layout',
   extname: 'hbs',
   partialsDir: [
     path.join(__dirname, 'views/partials')
@@ -36,19 +34,38 @@ app.engine('hbs', hbs({
   }
 }))
 
+const store = new MongoStore({
+  uri: 'mongodb+srv://Umarjon007:4D3jawAVR2r5KOBr@cluster0.7ksdl.mongodb.net/myFirstDatabase',
+  collection: 'session'
+})
+
+require('./helper/db')()
+
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  resave: false,
+  secret: 'some_secret_key',
+  saveUninitialized: false,
+  store
+}))
+
+app.use('/admin', express.static(path.join(__dirname, 'public')))
+app.use('/admin:any', express.static(path.join(__dirname, 'public')))
+
+app.use(variables)
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
-app.use('/admin', categoriesRouter);
-app.use('/admin', productsRouter);
+app.use('/admin/category', categoryRouter);
+app.use('/admin/product', productRouter);
+app.use('/auth', authRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

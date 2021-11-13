@@ -1,19 +1,16 @@
-const {
-    Schema,
-    model
-} = require('mongoose')
+const { Schema, model } = require('mongoose')
 
 const CategorySchema = new Schema({
-    name: {
+    categoryName: {
         type: String,
         required: true
     },
-    description: {
+    categoryIcon: {
         type: String,
         required: true
     },
-    icon: {
-        type: String,
+    sortNumber: {
+        type: Number,
         required: true
     }
 })

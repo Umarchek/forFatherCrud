@@ -1,8 +1,26 @@
+<!DOCTYPE html>
 <html lang="en">
+{{> head}}
 
-  <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-      {{{body}}}
+<body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    {{> preloader}}
+
+    {{> navbar}}
+    {{#if isAuthen}}
+    {{> aside}}
+    {{/if}}
+
+    <div class="content-wrapper">
+      {{> header}}
+      <div class="content">
+        {{{body}}}
+      </div>
     </div>
-  </body>
+    {{> footer}}
+  </div>
+
+  {{> script}}
+</body>
+
 </html>

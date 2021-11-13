@@ -1,31 +1,21 @@
 {{#if products.length}}
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {{#each products}}
-    {{!-- <div class="col-3">
-        <div class="card">
-            <img src="/images/{{img}}" class="card-img-top" alt="{{name}}" />
-            <div class="card-body d-flex justify-content-between">
-                <h5 class="card-title">{{name}}</h5>
-                <p class="card-title"><b>{{price}}</b></p>
-            </div>
-            <div class="d-flex justify-content-between">
-                <a href="/admin/products/edit/{{id}}">O'zgartirish</a>
-                <a href="/admin/products/delete/{{id}}">O'chirish</a>
-            </div>
-        </div>
-    </div> --}}
-    <div class="col">
-        <div class="card">
-            <img src="/images/{{img}}" class="card-img-top" alt="{{name}}">
-            <div class="card-body">
-                <h5 class="card-title">{{name}}</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.</p>
+{{#each products}}
+<div class="col-lg-3">
+    <div class="card">
+        <img src="/images/{{img}}" alt="{{img}}">
+        <div class="card-body" style="text-align: center;">
+            <a href="/admin/category/read/{{id}}" class="card-title">{{name}}</a>
+            <br>
+            <p class="card-title">{{price}}</p>
+            <hr>
+            <div class="d-flex">
+                <a href="/admin/category/delete/{{id}}" class="btn btn-danger">O'chirish</a>
+                <a href="/admin/category/edit/{{id}}" class="btn btn-warning">O'zgartirish</a>
             </div>
         </div>
     </div>
-    {{/each}}
 </div>
+{{/each}}
 {{else}}
-<h2>Kategoriyalar bo'sh</h2>
+<h1>Mahsulotlar yo'q</h1>
 {{/if}}

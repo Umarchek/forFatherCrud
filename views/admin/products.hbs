@@ -1,38 +1,21 @@
 {{#if products.length}}
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="row">
     {{#each products}}
-
-      <div class="col">
+    <div class="col-lg-3">
         <div class="card">
-          <img src="/images/{{img}}" class="card-img-top" alt="{{name}}" />
-          <div class="card-body">
-            <h5 class="card-title">{{name}}</h5>
-            <p class="card-text">{{price}}</p>
-          </div>
-          <div class="d-flex justify-content-between">
-            <a class="btn btn-primary" href="/admin/products/edit/{{id}}"><i
-                class="far fa-edit"
-              ></i>O'zgartirish</a> 
-            <a class="btn btn-danger" href="/admin/products/delete/{{id}}"><i
-                class="fas fa-trash"
-              ></i>O'chirish</a>
-          </div>
+            <img src="/images/{{img}}" alt="{{img}}">
+            <div class="card-body">
+                <a href="/admin/product/read/{{id}}" class="card-title">{{name}}</a>
+                <p>{{price}}</p>
+                <div class="d-flex">
+                    <a href="/admin/product/delete/{{id}}" class="btn btn-danger">O'chirish</a>
+                    <a href="/admin/product/edit/{{id}}" class="btn btn-warning">O'zgartirish</a>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
     {{/each}}
-  </div>
+</div>
 {{else}}
-  <h2>Kategoriyalar bo'sh</h2>
+<h1>Kategoriyalar yo'q</h1>
 {{/if}}
-{{!-- <div class="col-3">
-  <div class="card">
-    <img src="/images/{{icon}}" class="card-img-top" alt="{{name}}" />
-    <div class="card-body">
-      <h5 class="card-title">{{name}}</h5>
-    </div>
-    <div class="d-flex justify-content-between">
-      <a href="/admin/category/edit/{{id}}">O'zgartirish</a>
-      <a href="/admin/category/delete/{{id}}">O'chirish</a>
-    </div>
-  </div>
-</div> --}}
