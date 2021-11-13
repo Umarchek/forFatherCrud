@@ -52,14 +52,13 @@ router.get('/edit/:id', async (req, res) => {
 router.post('/edit/:id', fileUpload.single('img'), async (req, res) => {
     const { img } = await Product.findById(req.params.id)
     const product = req.body
-    console.log(product)
 
     if (req.file) {
         toDelete(img)
         product.img = req.file.filename
     }
 
-    await product.findByIdAndUpdate(req.params.id, product, (err) => {
+    await product.findById(req.params.id, product, (err) => {
         if (err) {
             console.log(err);
         } else {
