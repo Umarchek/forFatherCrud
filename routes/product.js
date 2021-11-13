@@ -58,7 +58,7 @@ router.post('/edit/:id', fileUpload.single('img'), async (req, res) => {
         product.img = req.file.filename
     }
 
-    await product.findById(req.params.id, product, (err) => {
+    await product.findByIdandUpdate(req.params.id, product, (err) => {
         if (err) {
             console.log(err);
         } else {
