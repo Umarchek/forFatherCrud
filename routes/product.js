@@ -1,8 +1,10 @@
 const { Router } = require('express')
 const router = Router()
 const fileUpload = require('../middleware/fileUpload')
+const toDelete = require('../middleware/toDelete')
 const Product = require('../models/Product')
 const auth = require('../middleware/auth')
+const Category = require('../models/Category')
 
 router.get('/view', auth, async (req, res) => {
     const products = await Product.find()
@@ -16,7 +18,7 @@ router.get('/view', auth, async (req, res) => {
 })
 
 router.get('/add', auth, async (req, res) => {
-    const categories = await product.find()
+    const categories = await Category.find()
     res.render('admin/productCreate', {
         header: 'Mahsulot yaratish',
         layout: 'main',
@@ -49,6 +51,7 @@ router.get('/edit/:id', async (req, res) => {
         layout: 'main'
     })
 })
+
 router.post('/edit/:id', fileUpload.single('img'), async (req, res) => {
     const { img } = await Product.findById(req.params.id)
     const product = req.body
@@ -58,12 +61,29 @@ router.post('/edit/:id', fileUpload.single('img'), async (req, res) => {
         product.img = req.file.filename
     }
 
-    await product.findByIdandUpdate(req.params.id, product, (err) => {
+    await Product.findByIdAndUpdate(req.params.id, product, (err) => {
         if (err) {
             console.log(err);
         } else {
-            res.redirect('/admin/product/read')
+            res.redirect('/admin/product/view')
         }
     })
+})
+
+router.get('/delete/:id', async (req, res) => {
+    try {
+        const { img } = await Product.findById(req.params.id)
+        await Product.findByIdAndDelete(req.params.id, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                toDelete(img)
+                res.redirect('/admin/product/view')
+            }
+        })
+    }
+    catch (err) {
+        return { err: err.toString(), status: 500, data: null };
+    }
 })
 module.exports = router

@@ -93,7 +93,6 @@ router.post('/add', fileUpload.single('categoryIcon'), async (req, res) => {
 
 router.get('/edit/:id', async (req, res) => {
     const category = await Category.findById(req.params.id)
-    console.log(category)
     res.render('admin/categoryEdit', {
         category,
         header: 'Kategoriyalarni yangilash',
