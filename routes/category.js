@@ -59,8 +59,7 @@ router.get('/read/:id', async (req, res) => {
     ])
 
     // res.send(products[0].mahsulotlar)
-    products = products[0].mahsulotlar
-
+    products = products[0]
     console.log(products)
     res.render('admin/category', {
         header: categoryName,
