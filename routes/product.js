@@ -41,7 +41,7 @@ router.post('/add', auth, fileUpload.single('img'), async (req, res) => {
         year,
         productId
     })
-
+    console.log(product);
     await product.save()
     res.redirect('/admin/product/view')
 })

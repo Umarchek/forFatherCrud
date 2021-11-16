@@ -1,21 +1,39 @@
 {{#if products.length}}
-<div class="row">
+  <div class="row">
     {{#each products}}
-    <div class="col-lg-3">
+      <div class="col-lg-3">
         <div class="card">
-            <img src="/images/{{img}}" alt="{{img}}">
-            <div class="card-body">
-                <a href="/admin/product/read/{{id}}" class="card-title">{{name}}</a>
-                <p>{{price}}</p>
-                <div class="d-flex">
-                    <a href="/admin/product/delete/{{id}}" class="btn btn-danger">O'chirish</a>
-                    <a href="/admin/product/edit/{{id}}" class="btn btn-warning">O'zgartirish</a>
-                </div>
+          <img src="/images/{{img}}" alt="{{img}}" />
+          <div class="card-body">
+            <a href="/admin/product/read/{{id}}" class="card-title">{{name}}</a>
+            <p>{{price}}
+              <br />
+              {{nmb}}
+              <br />
+              {{marks}}
+              <br />
+              {{year}}
+              <br />
+              {{number}}
+            </p>
+
+            <p>{{price}}</p>
+
+            <div class="d-flex">
+              <a
+                href="/admin/product/delete/{{id}}"
+                class="btn btn-danger"
+              >O'chirish</a>
+              <a
+                href="/admin/product/edit/{{id}}"
+                class="btn btn-warning"
+              >O'zgartirish</a>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
     {{/each}}
-</div>
+  </div>
 {{else}}
-<h1>Kategoriyalar yo'q</h1>
+  <h1>Kategoriyalar yo'q</h1>
 {{/if}}
