@@ -110,13 +110,14 @@ router.post('/edit/:id', fileUpload.single('categoryIcon'), async (req, res) => 
         category.categoryIcon = req.file.filename
     }
 
-    await Category.findByIdAndUpdate(req.params.id, category, (err) => {
-        if (err) {
+     Category.findOneAndUpdate(req.params.id, category).then(()=>{
+         res.redirect('/admin/category/read')
+     }).catch(err=>{
             console.log(err);
-        } else {
-            res.redirect('/admin/category/read')
-        }
-    })
+     })
+
+    console.log(category);
+
 })
 
 router.get('/delete/:id', async (req, res) => {
