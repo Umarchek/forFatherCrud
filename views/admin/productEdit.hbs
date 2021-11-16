@@ -1,29 +1,67 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card card-primary">
-                <form action="/admin/product/edit/{{product.id}}" method="POST" enctype="multipart/form-data">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="name">Mahsulot nomi</label>
-                            <input type="text" value="{{product.name}}" class="form-control" name="name" id="name">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="price">Mahsulot narxi</label>
-                            <input type="number" value="{{product.price}}" class="form-control" name="price" id="price">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="img">Mahsulot rasmi</label>
-                            <input type="file" value="{{product.img}}" class="form-control" name="img" id="img">
-                        </div> 
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary" type="submit">Yangilash</button>
-                    </div>
-                </form>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-primary">
+        <form
+          action="/admin/product/edit/{{product.id}}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="card-body">
+            <div class="form-group">
+              <label for="name">Техника тури</label>
+              <input type="text" value="{{product.name}}" class="form-control" name="name" id="name" />
             </div>
-        </div>
+
+            <div class="form-group">
+              <label for="nmb">Инв. №</label>
+              <input type="number" value="{{product.nmb}}" class="form-control" name="nmb" id="nmb" />
+            </div>
+            <div class="form-group">
+              <label for="marks">Техниканинг маркаси</label>
+              <input type="text" value="{{product.marks}}" class="form-control" name="marks" id="marks" />
+            </div>
+            <div class="form-group">
+              <label for="year">Чикарил. йил</label>
+              <input type="text" class="form-control" name="year" id="year" />
+            </div>
+            <div class="form-group">
+              <label for="number">Давлат раками №</label>
+              <input
+                type="text"
+                class="form-control"
+                name="number"
+                id="number"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="price">Mahsulot narxi</label>
+              <input
+                type="number"
+                value="{{product.price}}"
+                class="form-control"
+                name="price"
+                id="price"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="img">Mahsulot rasmi</label>
+              <input
+                type="file"
+                value="{{product.img}}"
+                class="form-control"
+                name="img"
+                id="img"
+              />
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" type="submit">Yangilash</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
