@@ -33,6 +33,7 @@ router.post('/add', auth, fileUpload.single('img'), async (req, res) => {
 
     const product = new Product({
         name,
+        nmb,
         price,
         img,
         productId
