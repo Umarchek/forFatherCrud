@@ -37,6 +37,7 @@ router.post('/add', auth, fileUpload.single('img'), async (req, res) => {
         price,
         img,
         marks,
+        year,
         productId
     })
 
