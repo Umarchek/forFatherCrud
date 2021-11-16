@@ -27,13 +27,12 @@ router.get("/add", auth, async (req, res) => {
 });
 
 router.post("/add", auth, fileUpload.single("img"), async (req, res) => {
-  const { name, nmb, price, marks, number, year, productId } = req.body;
+  const { name, nmb, marks, number, year, productId } = req.body;
   const img = req.file.filename;
 
   const product = new Product({
     name,
     nmb,
-    price,
     marks,
     number,
     year,
