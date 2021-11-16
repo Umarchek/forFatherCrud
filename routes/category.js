@@ -51,7 +51,10 @@ router.get('/read/:id', async (req, res) => {
             $project: {
                 _id: '$id._id',
                 name: '$_id.name',
-                price: '$_id.price',
+                nmb: '$_id.nmb',
+                marks: '$_id.marks',
+                year: '$_id.year',
+                number: '$_id.number',
                 img: '$_id.img',
                 mahsulotlar: '$mahsulotlar'
             }
@@ -59,8 +62,8 @@ router.get('/read/:id', async (req, res) => {
     ])
 
     // res.send(products[0].mahsulotlar)
-    products = products[0]
     console.log(products)
+    products = products[0]
     res.render('admin/category', {
         header: categoryName,
         products,
