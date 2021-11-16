@@ -6,10 +6,14 @@ const ProductSchema = new Schema({
         required: true
     },
     nmb: {
-        type: String,
+        type: Number,
         required: true
     },
     marks: {
+        type: String,
+        required: true
+    },
+    year: {
         type: String,
         required: true
     },
