@@ -61,13 +61,11 @@ router.post('/edit/:id', fileUpload.single('img'), async (req, res) => {
         product.img = req.file.filename
     }
 
-    await Product.findByIdAndUpdate(req.params.id, product, (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.redirect('/admin/product/view')
-        }
-    })
+     Product.findByIdAndUpdate(req.params.id, product).then(()=>{
+        res.redirect('/admin/product/view')
+     }).catch(err=>{
+         console.log(err);
+     })
 })
 
 router.get('/delete/:id', async (req, res) => {
